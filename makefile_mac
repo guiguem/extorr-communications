@@ -4,11 +4,15 @@ EXEDIR=exe
 SRCDIR=src
 
 FIRMWARENAME=qpbox.l2
+PROVIDERSOURCES=$(SRCDIR)/provider.cs
 RGASOURCES=$(SRCDIR)/rga.cs $(SRCDIR)/controls.cs $(SRCDIR)/serial.cs $(SRCDIR)/download.cs $(SRCDIR)/plot.cs
 BOOTFIRMSOURCES=$(SRCDIR)/bootfirm.cs $(SRCDIR)/download.cs
 ADDITIONAL_LIB=-r:System.Windows.Forms.dll -r:System.Drawing.dll
 
-all : rga.exe bootfirm.exe
+all : provider.exe rga.exe bootfirm.exe
+
+provider.exe : $(PROVIDERSOURCES) $(FIRMWARE)
+	mcs $(ADDITIONAL_LIB) /target:winexe /resource:$(SRCDIR)/$(FIRMWARENAME) /O $(PROVIDERSOURCES) -out:$(EXEDIR)/provider.exe
 
 rga.exe : $(RGASOURCES) $(FIRMWARE)
 	mcs $(ADDITIONAL_LIB) /target:winexe /resource:$(SRCDIR)/$(FIRMWARENAME) /O $(RGASOURCES) -out:$(EXEDIR)/rga.exe
