@@ -4,12 +4,19 @@ Implementation of communications with the ExTorr RGA, mainly .NET
 ## Requirements
 
 ## Generate executables
-MAC:
-make -f makefile_win rga.exe
+- MAC:   
+  - Bootfirm uploader:  
+  ```bash
+  make -f makefile_mac bootfirm.exe
+  ```
+  - RGA executable:  
+  ```bash
+  make -f makefile_mac rga.exe
+  ```
 
-PC:
+- PC:
 
 ## Usage
-MAC:
+- MAC:
 
-PC:
+- PC:
