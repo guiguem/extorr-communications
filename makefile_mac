@@ -1,0 +1,23 @@
+
+
+EXEDIR=exe
+SRCDIR=src
+
+FIRMWARENAME=qpbox.l2
+RGASOURCES=$(SRCDIR)/rga.cs $(SRCDIR)/controls.cs $(SRCDIR)/serial.cs $(SRCDIR)/download.cs $(SRCDIR)/plot.cs
+BOOTFIRMSOURCES=$(SRCDIR)/bootfirm.cs $(SRCDIR)/download.cs
+ADDITIONAL_LIB=-r:System.Windows.Forms.dll -r:System.Drawing.dll
+
+all : rga.exe bootfirm.exe
+
+rga.exe : $(RGASOURCES) $(FIRMWARE)
+	mcs $(ADDITIONAL_LIB) /target:winexe /resource:$(SRCDIR)/$(FIRMWARENAME) /O $(RGASOURCES) -out:$(EXEDIR)/rga.exe
+
+bootfirm.exe : $(BOOTFIRMSOURCES) $(FIRMWARE)
+	mcs $(ADDITIONAL_LIB) /resource:$(SRCDIR)/$(FIRMWARENAME) $(BOOTFIRMSOURCES) -out:$(EXEDIR)/bootfirm.exe
+
+clean :
+	-rm -f rga.exe
+	-rm -f bootfirm.exe
+
+.PHONY : clean all
