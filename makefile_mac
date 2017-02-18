@@ -1,4 +1,4 @@
-
+# Makefile for compiling the Extorr RGA interface executable.
 
 EXEDIR=exe
 SRCDIR=src
