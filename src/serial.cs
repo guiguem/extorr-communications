@@ -223,7 +223,7 @@ partial class RgaWindow : Form
 
     float[] trendDomain = new float[12];
     int trendSamples = 1;
-    
+
     void setupTrend(string fromQp)
     {
         int sweepnum = 0;
@@ -491,6 +491,7 @@ partial class RgaWindow : Form
     {
         string s;
 
+        Console.WriteLine("read loops");
         while (readStopRequested == false){
             try {
                 s = serial.ReadLine();
@@ -536,7 +537,7 @@ partial class RgaWindow : Form
         }
         if (openSerial(port, baudRate) == false)
             return false;
-        
+
         Thread t = new Thread(new ThreadStart(doReadLoop));
         readStopRequested = false;
         t.Start();
@@ -566,7 +567,7 @@ partial class RgaWindow : Form
                 cmd += String.Format(":ck:{0}", checksumFor(cmd) );
 
             logToConsole(String.Format("(send) {0}", cmd) );
-            
+
             serial.Write(cmd);
             serial.Write("\n");
         } catch {
@@ -579,4 +580,3 @@ partial class RgaWindow : Form
 
 
 }
-

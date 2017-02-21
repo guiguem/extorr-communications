@@ -218,16 +218,19 @@ partial class RgaWindow : Form {
 
     void OnOutputsRefresh(object sender, EventArgs e)
     {
+        Console.WriteLine("refresh");
         sendToQpBox("symbols");
     }
 
     void OnCalibrationRefresh(object sender, EventArgs e)
     {
+        Console.WriteLine("refresh");
         sendToQpBox("symbols");
     }
 
     void OnOperatingRefresh(object sender, EventArgs e)
     {
+        Console.WriteLine("refresh");
         sendToQpBox("symbols");
     }
 
@@ -247,6 +250,7 @@ partial class RgaWindow : Form {
                 commPortBox.Disable();
                 commOpenCloseBtn.Text = "Close";
                 commBootBtn.Enabled = false;
+                Console.WriteLine("refresh");
                 sendToQpBox("symbols");
             }
         } else if (btn.Text == "Close"){
@@ -921,9 +925,10 @@ partial class RgaWindow : Form {
 
 class app
 {
-    [STAThreadAttribute]
+    // [STAThreadAttribute]
 	public static void Main()
 	{
+    Console.WriteLine("Jello");
 		Application.Run(new RgaWindow());
 	}
 }
